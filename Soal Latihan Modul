@@ -1,0 +1,114 @@
+package Array;
+
+import java.util.Scanner;
+
+public class KeretaApi {
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+
+        String[][] isi = new String[][]{
+            {"No", "Jenis", "Harga", "Diskon", "AC", "Colokan"},
+            {"1", "Ekonomi", "50000", "2%", "Tidak Ada", "Tidak Ada"},
+            {"2", "Bisnis", "100000", "5%", "Ada", "Tidak Ada"},
+            {"3", "Eksekutif", "200000", "7%", "Ada", "Tidak Ada"},
+            {"4", "Pariwisata", "300000", "10%", "Ada", "Ada"},};
+        int jenisKereta[] = new int[100];
+        int total[] = new int[100];
+        String nama[] = new String[100];
+        String noId[] = new String[100];
+
+        int harga[] = {50000, 100000, 200000, 300000};
+        int diskon[] = {2, 5, 7, 10};
+
+        int pilihan, penghitung = 0, hargaAkhir = 0;
+
+        do {
+            System.out.println("SELAMAT DATANG DI LAYANAN KERETA API JAVA!");
+            System.out.println("MENU :");
+            System.out.println("1. Melihat Daftar Kereta Api");
+            System.out.println("2. Melihat Daftar Kereta Api yang ada AC");
+            System.out.println("3. Melihat Daftar Kereta Api yang ada colokan");
+            System.out.println("4. Memesan Tiket Kereta Api");
+            System.out.println("5. Melihat Pesanan Tiket");
+            System.out.print("Masukkan Pilihan Menu Anda : ");
+            pilihan = in.nextInt();
+
+            if (pilihan == 1) {
+                for (int i = 0; i < 5; i++) {
+                    for (int j = 0; j < 6; j++) {
+                        System.out.printf("%-12s", isi[i][j]);
+                    }
+                    System.out.println("");
+                }
+                System.out.println("");
+
+            } else if (pilihan == 2) {
+                for (int i = 0; i < 1; i++) {
+                    for (int j = 0; j < 6; j++) {
+                        System.out.printf("%-12s", isi[i][j]);
+                    }
+                    System.out.println("");
+                }
+                for (int i = 2; i < 5; i++) {
+                    for (int j = 0; j < 6; j++) {
+                        System.out.printf("%-12s", isi[i][j]);
+                    }
+                    System.out.println("");
+                }
+                System.out.println("");
+
+            } else if (pilihan == 3) {
+                for (int i = 0; i < 1; i++) {
+                    for (int j = 0; j < 6; j++) {
+                        System.out.printf("%-12s", isi[i][j]);
+                    }
+                    System.out.println("");
+                }
+                for (int i = 4; i < 5; i++) {
+                    for (int j = 0; j < 6; j++) {
+                        System.out.printf("%-12s", isi[i][j]);
+                    }
+                    System.out.println("");
+                }
+                System.out.println("");
+
+            } else if (pilihan == 4) {
+                for (int i = 0; i < 5; i++) {
+                    for (int j = 0; j < 2; j++) {
+                        System.out.printf("%-12s", isi[i][j]);
+                    }
+                    System.out.println("");
+                }
+
+                System.out.print("Pilihan Jenis Tiket : ");
+                jenisKereta[penghitung] = in.nextInt();
+                System.out.print("Masukkan Nama Anda  : ");
+                nama[penghitung] = in.next();
+                System.out.print("Masukkan No ID Anda : ");
+                noId[penghitung] = in.next();
+
+                int x = jenisKereta[penghitung] - 1;
+                total[penghitung] = harga[x] - (harga[x] * diskon[x] / 100);
+                hargaAkhir += total[penghitung];
+                penghitung++;
+
+            } else if (pilihan == 5) {
+                for (int i = 0; i < penghitung; i++) {
+                    System.out.println("pilihan Tiket Anda : " + i + 1);
+                    System.out.println("Jenis Kereta Anda  : " + isi[jenisKereta[i]][1]);
+                    System.out.println("Atas Nama          : " + nama[i]);
+                    System.out.println("No ID              : " + noId[i]);
+                    System.out.println("Harga              : Rp." + harga[jenisKereta[i] - 1]);
+                    System.out.println("Diskon             : " + diskon[jenisKereta[i] - 1] + "%");
+                    System.out.println("Harga Akhir        : Rp." + total[i]);
+                    System.out.println("Total Tagihan      : Rp." + hargaAkhir);
+                }
+                System.out.println("");
+            } else {
+                System.out.println("TERIMA KASIH TELAH MENGGUNAKAN LAYANAN KAMI...");
+                break;
+            }
+        } while (pilihan != 0);
+    }
+}
